@@ -2,10 +2,41 @@ body {
   font-family: Georgia, serif;
   color: #111;
   background: #fdfdfc;
-  max-width: 720px;
-  margin: 4rem auto;
-  padding: 0 1rem;
+  margin: 0;
   line-height: 1.65;
+}
+
+header,
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+header {
+  margin-top: 1.5rem;
+}
+
+main {
+  margin-top: 2.5rem;
+  margin-bottom: 3.5rem;
+}
+
+nav a + a {
+  margin-left: 1rem;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #111;
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+}
+
+.skip-link:focus {
+  top: 0;
 }
 
 h1,
@@ -21,6 +52,7 @@ a {
 
 a:focus {
   outline: 2px solid #002fa7;
+  outline-offset: 2px;
 }
 
 .cqja-number {
@@ -41,4 +73,29 @@ a:focus {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+}
+
+.tag-cloud li {
+  margin: 0;
+}
+
+label,
+input {
+  display: block;
+}
+
+input[type="search"] {
+  margin: 0.4rem 0 1rem;
+  padding: 0.45rem 0.6rem;
+  width: min(100%, 24rem);
+  border: 1px solid #777;
+}
+
+.note-tags {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
 }

@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: collections.tagStats
+  size: 1
+  alias: tagData
+permalink: "/tags/{{ tagData.tag | tagSlug }}/index.html"
+title: "Tag"
+---
+
+<h1>Tag: {{ tagData.tag }}</h1>
+
+{% set taggedNotes = collections.cqjaOrdered | hasTag(tagData.tag) %}
+
+{% if taggedNotes.length %}
+<ul>
+{% for note in taggedNotes | reverse %}
+  <li>
+    <a href="{{ note.url }}">{{ note.data.title }}</a>
+  </li>
+{% endfor %}
+</ul>
+{% else %}
+<p>Aucune note pour ce tag.</p>
+{% endif %}
+
+<p><a href="/tags/">Retour au nuage</a></p>

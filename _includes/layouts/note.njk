@@ -13,7 +13,17 @@
 
 <h1>{{ title }}</h1>
 
-<p><small>{{ date | date("yyyy-MM-dd") }}</small></p>
+<p><small>{{ date | dateIso }}</small></p>
+
+{% if tags and tags.length > 0 %}
+<ul class="note-tags" aria-label="Tags de la note">
+  {% for tag in tags %}
+    {% if tag != "note" %}
+    <li><a href="/tags/{{ tag | tagSlug }}/">#{{ tag }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+{% endif %}
 
 {{ content | safe }}
 

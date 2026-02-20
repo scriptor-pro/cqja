@@ -31,7 +31,16 @@ FILENAME="$BASE_DIR/$DATE_FULL-$TIMESTAMP-$SLUG.md"
 
 # Normalisation tags
 normalize_tags() {
-  echo "$1"     | iconv -t ascii//TRANSLIT 2>/dev/null     | tr '[:upper:]' '[:lower:]'     | sed 's/[[:space:]]\+/-/g'     | tr -cd 'a-z0-9,-'     | sed 's/,,*/,/g'     | sed 's/^,//;s/,$//'     | tr ',' '\n'     | awk '!seen[$0]++'     | paste -sd ", " -
+  echo "$1" \
+    | iconv -t ascii//TRANSLIT 2>/dev/null \
+    | tr '[:upper:]' '[:lower:]' \
+    | sed 's/[[:space:]]\+/-/g' \
+    | tr -cd 'a-z0-9,-' \
+    | sed 's/,,*/,/g' \
+    | sed 's/^,//;s/,$//' \
+    | tr ',' '\n' \
+    | sed '/^$/d' \
+    | awk '!seen[$0]++ { printf "  - \"%s\"\n", $0 }'
 }
 
 AUTO_KEYWORDS=$(echo "$TEXT"   | iconv -t ascii//TRANSLIT 2>/dev/null   | tr '[:upper:]' '[:lower:]'   | tr -cd 'a-z0-9 '   | tr ' ' '\n'   | awk 'length > 6'   | sort | uniq | head -n 3   | paste -sd "," -)
@@ -44,7 +53,8 @@ cat <<EOF > "$FILENAME"
 title: "$TEXT"
 date: $DATE_FULL
 layout: layouts/note.njk
-tags: [${FORMATTED_TAGS}]
+tags:
+${FORMATTED_TAGS}
 ---
 
 $TEXT

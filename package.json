@@ -6,6 +6,8 @@
   "scripts": {
     "build": "eleventy",
     "dev": "eleventy --serve",
+    "note": "bash scripts/note.sh",
+    "publish": "bash scripts/publish.sh",
     "test": "echo \"No tests configured\""
   },
   "keywords": [

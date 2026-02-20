@@ -1,6 +1,29 @@
 const { JSDOM } = require("jsdom");
 
 module.exports = function (eleventyConfig) {
+  eleventyConfig.addPassthroughCopy("assets");
+
+  eleventyConfig.addFilter("tagSlug", function (value) {
+    return String(value)
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  });
+
+  eleventyConfig.addFilter("hasTag", function (items, tag) {
+    return (items || []).filter((item) => (item.data.tags || []).includes(tag));
+  });
+
+  eleventyConfig.addFilter("dateIso", function (value) {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) {
+      return "";
+    }
+    return date.toISOString().slice(0, 10);
+  });
+
   eleventyConfig.addCollection("cqjaOrdered", function (collectionApi) {
     return collectionApi
       .getFilteredByTag("note")
@@ -21,10 +44,12 @@ module.exports = function (eleventyConfig) {
     const max = Math.max(...Object.values(tagCount), 1);
     const min = Math.min(...Object.values(tagCount), 0);
 
-    return Object.entries(tagCount).map(([tag, count]) => {
-      const weight = (count - min) / (max - min || 1);
-      return { tag, count, weight };
-    });
+    return Object.entries(tagCount)
+      .map(([tag, count]) => {
+        const weight = (count - min) / (max - min || 1);
+        return { tag, count, weight };
+      })
+      .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
   });
 
   eleventyConfig.addTransform("externalLinks", function (content) {

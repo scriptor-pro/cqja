@@ -7,8 +7,20 @@
   <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Aller au contenu</a>
+  <header>
+    <nav aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/tags/">Tags</a>
+    </nav>
+  </header>
+
   <main>
-    {{ content | safe }}
+    <div id="main-content">
+      {% block content %}
+      {{ content | safe }}
+      {% endblock %}
+    </div>
   </main>
 </body>
 </html>

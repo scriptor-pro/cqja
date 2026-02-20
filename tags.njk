@@ -11,10 +11,10 @@ title: Tags
 <ul class="tag-cloud" id="tag-cloud">
 {% for item in collections.tagStats %}
   <li data-tag="{{ item.tag }}">
-    <a href="/tags/{{ item.tag }}/"
+    <a href="/tags/{{ item.tag | tagSlug }}/"
        style="font-size: {{ 0.9 + (item.weight * 1.4) }}rem;
               font-weight: {{ 400 + (item.weight * 500) | round }};">
-      {{ item.tag }}
+      {{ item.tag }} ({{ item.count }})
     </a>
   </li>
 {% endfor %}
