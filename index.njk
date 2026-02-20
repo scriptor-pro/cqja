@@ -14,7 +14,8 @@ title: Ce Que J'ai Appris
       {% if loop.index <= 10 %}
       <li class="note-item">
         <a href="{{ note.url }}">{{ note.data.title }}</a>
-        <small>{{ note.date | dateIso }}</small>
+        <p class="note-excerpt">{{ note.templateContent | striptags | trim | truncate(78, true, "…") }}</p>
+        <small>{{ note.date | dateFr }}</small>
         {% if note.data.tags and note.data.tags.length > 0 %}
         <ul class="note-tags" aria-label="Tags de la note">
           {% for tag in note.data.tags %}

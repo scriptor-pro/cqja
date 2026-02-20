@@ -151,6 +151,11 @@ nav a:focus-visible {
   margin-top: 0.08rem;
 }
 
+.note-excerpt {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+}
+
 .cqja-number {
   margin-bottom: 0.3rem;
   font-size: 0.85rem;

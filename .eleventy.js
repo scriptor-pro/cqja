@@ -1,4 +1,10 @@
 const { JSDOM } = require("jsdom");
+const dateFrFormatter = new Intl.DateTimeFormat("fr-FR", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("assets");
@@ -22,6 +28,14 @@ module.exports = function (eleventyConfig) {
       return "";
     }
     return date.toISOString().slice(0, 10);
+  });
+
+  eleventyConfig.addFilter("dateFr", function (value) {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) {
+      return "";
+    }
+    return dateFrFormatter.format(date);
   });
 
   eleventyConfig.addCollection("cqjaOrdered", function (collectionApi) {
