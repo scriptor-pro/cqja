@@ -1,5 +1,5 @@
 :root {
-  --bg: #f4f0e6;
+  --bg: #f7f4ed;
   --paper: #fffdf8;
   --ink: #111111;
   --muted: #49505b;
@@ -25,18 +25,7 @@
 body {
   margin: 0;
   color: var(--ink);
-  background:
-    radial-gradient(
-      circle at 8% 10%,
-      rgba(243, 195, 22, 0.18),
-      transparent 20%
-    ),
-    radial-gradient(
-      circle at 90% 12%,
-      rgba(13, 71, 161, 0.14),
-      transparent 18%
-    ),
-    linear-gradient(180deg, #faf7ef, var(--bg));
+  background: var(--bg);
   font-family: var(--font-serif);
   font-size: clamp(1.03rem, 0.98rem + 0.25vw, 1.13rem);
   line-height: 1.72;
