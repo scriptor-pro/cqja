@@ -151,9 +151,13 @@ nav a:focus-visible {
   margin-top: 0.08rem;
 }
 
-.note-excerpt {
-  margin: 0.35rem 0 0;
+.note-content {
+  margin: 0.45rem 0 0;
   color: var(--muted);
+}
+
+.note-content > *:first-child {
+  margin-top: 0;
 }
 
 .cqja-number {
