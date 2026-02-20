@@ -1,15 +1,21 @@
 {
   "name": "cqja",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Ce Que J'ai Appris - Eleventy site",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "eleventy",
+    "dev": "eleventy --serve",
+    "test": "echo \"No tests configured\""
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "eleventy",
+    "notes"
+  ],
+  "author": "scriptor-pro",
   "license": "ISC",
   "dependencies": {
-    "@11ty/eleventy": "^3.1.2"
+    "@11ty/eleventy": "^3.1.2",
+    "jsdom": "^26.1.0"
   }
 }

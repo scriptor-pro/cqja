@@ -1,7 +1,0 @@
-{
-  "name": "cqja",
-  "scripts": {
-    "build": "eleventy",
-    "dev": "eleventy --serve"
-  }
-}

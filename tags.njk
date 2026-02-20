@@ -1,4 +1,3 @@
-
 ---
 layout: layouts/base.njk
 title: Tags
@@ -28,7 +27,7 @@ title: Tags
 
   input.addEventListener('input', function() {
     const value = this.value.toLowerCase();
-    tags.forEach(li => {
+    tags.forEach((li) => {
       li.style.display = li.dataset.tag.includes(value) ? '' : 'none';
     });
   });
