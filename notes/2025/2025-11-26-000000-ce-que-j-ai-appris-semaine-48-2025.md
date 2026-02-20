@@ -7,6 +7,7 @@ tags:
   - "2025"
   - "neolithique"
   - "vie-mondaine"
+  - "déchets-nucléaires"
 ---
 
 'Ndrangheta s'écrit avec l'apostrophe en tout premier, contrairement à N'Djamena qui s'écrit avec un accent. #pedantix

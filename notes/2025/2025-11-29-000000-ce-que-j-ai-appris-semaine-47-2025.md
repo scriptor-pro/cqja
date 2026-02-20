@@ -10,6 +10,8 @@ tags:
   - "geek"
   - "secte"
   - "privacy"
+  - "introjection"
+  - "citation"
 ---
 
 L'étymologie de "loustic" - vient de l'Allemand "lustig" (amusant)

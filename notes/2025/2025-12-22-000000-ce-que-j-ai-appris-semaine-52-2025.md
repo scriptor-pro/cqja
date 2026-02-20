@@ -7,6 +7,9 @@ tags:
   - "2025"
   - "html"
   - "art"
+  - "usenet"
+  - "prime video"
+  - "Danemark"
 ---
 
 - Le femmage. Qu'est-ce que c'est ? Dans l'art contemporain, c'est quand l'artiste utilise la couture, le crochet, <s>la vaisselle, la cuisine</s> comme technique de création. Le [femmage](https://fr.wikipedia.org/wiki/Femmage) n'est pas forcément pratiqué par une femme.

@@ -6,6 +6,10 @@ tags:
   - "note"
   - "2025"
   - "wikipedia"
+  - "poilu"
+  - "Inselberg"
+  - "Schelling"
+  - "Prospera"
 ---
 
 - Une minute de silence pour chaque soldat mort pendant la première guerre mondiale (10 millions de poilus pas tous inconnus) durerait environ 19 ans.
