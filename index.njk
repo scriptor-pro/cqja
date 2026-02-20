@@ -4,47 +4,55 @@ title: Ce Que J'ai Appris
 ---
 
 <h1>Ce Que J'ai Appris</h1>
-<p class="lede">Notes courtes, classees, reliees par themes.</p>
+<p class="lede">Notes courtes, classées, reliées par thèmes.</p>
 
-<div class="home-grid">
-  <section class="panel">
-    <h2>Dernieres notes</h2>
-    <ul class="home-notes">
-    {% for note in (collections.cqjaOrdered | reverse) %}
-      {% if loop.index <= 10 %}
-      <li class="note-item">
-        <a href="{{ note.url }}">{{ note.data.title }}</a>
-        <div class="note-content">{{ note.templateContent | safe }}</div>
-        <small>{{ note.date | dateFr }}</small>
-        {% if note.data.tags and note.data.tags.length > 0 %}
-        <ul class="note-tags" aria-label="Tags de la note">
-          {% for tag in note.data.tags %}
-            {% if tag != "note" %}
-            <li><a href="/tags/{{ tag | tagSlug }}/">#{{ tag }}</a></li>
+<section class="theme-terminal-home">
+  <div class="terminal-bar" aria-hidden="true">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span>carnet terminal / serif + sans-serif</span>
+  </div>
+
+  <div class="terminal-shell">
+    <div class="home-grid terminal-grid">
+      <section class="panel terminal-panel">
+        <p class="terminal-label">journal</p>
+        <ul class="home-notes terminal-notes">
+        {% for note in (collections.cqjaOrdered | reverse) %}
+          {% if loop.index <= 10 %}
+          <li class="note-item terminal-note-item">
+            <a class="terminal-title" href="{{ note.url }}">{{ note.data.title }}</a>
+            <div class="note-content">{{ note.templateContent | safe }}</div>
+            <small class="terminal-meta">{{ note.date | dateFr }}</small>
+            {% if note.data.tags and note.data.tags.length > 0 %}
+            <ul class="note-tags" aria-label="Tags de la note">
+              {% for tag in note.data.tags %}
+                {% if tag != "note" %}
+                <li><a href="/tags/{{ tag | tagSlug }}/">#{{ tag }}</a></li>
+                {% endif %}
+              {% endfor %}
+            </ul>
             {% endif %}
-          {% endfor %}
+          </li>
+          {% endif %}
+        {% endfor %}
         </ul>
-        {% endif %}
-      </li>
-      {% endif %}
-    {% endfor %}
-    </ul>
-  </section>
+      </section>
 
-  <aside class="home-tags panel">
-    <h2>Tags populaires</h2>
-    <ul class="tag-cloud">
-    {% for item in collections.tagStats %}
-      {% if loop.index <= 12 %}
-      <li>
-        <a href="/tags/{{ item.tag | tagSlug }}/"
-           style="font-size: {{ 0.9 + (item.weight * 1.2) }}rem; font-weight: {{ 450 + (item.weight * 450) | round }};">
-          {{ item.tag }} ({{ item.count }})
-        </a>
-      </li>
-      {% endif %}
-    {% endfor %}
-    </ul>
-    <p><a href="/tags/">Voir tous les tags</a></p>
-  </aside>
-</div>
+      <aside class="home-tags panel terminal-panel">
+        <p class="terminal-label">index des thèmes</p>
+        <ul class="tag-cloud">
+        {% for item in collections.tagStats %}
+          {% if loop.index <= 12 %}
+          <li>
+            <a href="/tags/{{ item.tag | tagSlug }}/">{{ item.tag }} ({{ item.count }})</a>
+          </li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+        <p><a href="/tags/">Voir tous les tags</a></p>
+      </aside>
+    </div>
+  </div>
+</section>

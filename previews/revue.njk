@@ -1,6 +1,6 @@
 ---
 layout: layouts/base.njk
-title: Apercu theme revue
+title: Aperçu thème revue
 permalink: /previews/revue/index.html
 ---
 
@@ -143,13 +143,13 @@ permalink: /previews/revue/index.html
 </style>
 
 <section class="theme-revue">
-  <p class="topline">Theme 1 - Revue intellectuelle</p>
+  <p class="topline">Thème 1 - Revue intellectuelle</p>
   <h1>Ce Que J'ai Appris</h1>
-  <p class="lede">Une page d'accueil qui donne d'abord l'impression d'un carnet de lecture: calme, lisible, structure par la typographie.</p>
+  <p class="lede">Une page d'accueil qui donne d'abord l'impression d'un carnet de lecture: calme, lisible, structuré par la typographie.</p>
 
   <div class="grid">
     <section class="panel">
-      <h2>Dernieres notes</h2>
+      <h2>Dernières notes</h2>
       <ul class="note-list">
       {% for note in (collections.cqjaOrdered | reverse) %}
         {% if loop.index <= 8 %}

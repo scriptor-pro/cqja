@@ -204,6 +204,74 @@ pre {
   gap: 1.25rem;
 }
 
+.theme-terminal-home {
+  margin-top: 0.35rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(15, 63, 122, 0.1);
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.52rem 0.8rem;
+  border-bottom: 1px solid var(--line);
+  background: #f6f7f9;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.terminal-bar .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #9aa6b8;
+}
+
+.terminal-shell {
+  padding: 1rem;
+}
+
+.terminal-panel {
+  border-radius: 10px;
+}
+
+.terminal-label {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.terminal-title {
+  font-family: var(--font-sans);
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.terminal-title:hover {
+  text-decoration: underline;
+}
+
+.terminal-meta {
+  font-family: var(--font-sans);
+}
+
+.terminal-note-item {
+  border-bottom-style: dashed;
+}
+
+.terminal-grid .note-content {
+  font-family: var(--font-serif);
+}
+
 @media (min-width: 860px) {
   .home-grid {
     grid-template-columns: 2fr 1fr;
