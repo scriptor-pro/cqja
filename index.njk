@@ -4,11 +4,46 @@ title: Ce Que J'ai Appris
 ---
 
 <h1>Ce Que J'ai Appris</h1>
+<p class="lede">Notes courtes, classees, reliees par themes.</p>
 
-<ul>
-{% for note in collections.cqjaOrdered | reverse %}
-  <li>
-    <a href="{{ note.url }}">{{ note.data.title }}</a>
-  </li>
-{% endfor %}
-</ul>
+<div class="home-grid">
+  <section class="panel">
+    <h2>Dernieres notes</h2>
+    <ul class="home-notes">
+    {% for note in (collections.cqjaOrdered | reverse) %}
+      {% if loop.index <= 10 %}
+      <li class="note-item">
+        <a href="{{ note.url }}">{{ note.data.title }}</a>
+        <small>{{ note.date | dateIso }}</small>
+        {% if note.data.tags and note.data.tags.length > 0 %}
+        <ul class="note-tags" aria-label="Tags de la note">
+          {% for tag in note.data.tags %}
+            {% if tag != "note" %}
+            <li><a href="/tags/{{ tag | tagSlug }}/">#{{ tag }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </li>
+      {% endif %}
+    {% endfor %}
+    </ul>
+  </section>
+
+  <aside class="home-tags panel">
+    <h2>Tags populaires</h2>
+    <ul class="tag-cloud">
+    {% for item in collections.tagStats %}
+      {% if loop.index <= 12 %}
+      <li>
+        <a href="/tags/{{ item.tag | tagSlug }}/"
+           style="font-size: {{ 0.9 + (item.weight * 1.2) }}rem; font-weight: {{ 450 + (item.weight * 450) | round }};">
+          {{ item.tag }} ({{ item.count }})
+        </a>
+      </li>
+      {% endif %}
+    {% endfor %}
+    </ul>
+    <p><a href="/tags/">Voir tous les tags</a></p>
+  </aside>
+</div>

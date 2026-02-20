@@ -5,7 +5,6 @@ layout: layouts/note.njk
 tags:
   - "note"
   - "2026"
-  - "cqja"
   - "coree"
   - "cuba"
   - "coca"

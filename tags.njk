@@ -3,10 +3,11 @@ layout: layouts/base.njk
 title: Tags
 ---
 
-<h2>Nuage de tags</h2>
+<h1>Nuage de tags</h1>
+<p class="lede">Explore les notes par mot-cle et frequences.</p>
 
 <label for="tag-filter">Filtrer les tags</label>
-<input type="search" id="tag-filter">
+<input type="search" id="tag-filter" placeholder="Ex: iran, html, privacy">
 
 <ul class="tag-cloud" id="tag-cloud">
 {% for item in collections.tagStats %}
