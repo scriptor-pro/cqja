@@ -1,0 +1,43 @@
+
+body {
+  font-family: Georgia, serif;
+  color: #111;
+  background: #fdfdfc;
+  max-width: 720px;
+  margin: 4rem auto;
+  padding: 0 1rem;
+  line-height: 1.65;
+}
+
+h1, h2, h3 {
+  color: #002fa7;
+}
+
+a {
+  color: #002fa7;
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: 2px solid #002fa7;
+}
+
+.cqja-number {
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  color: #555;
+}
+
+.cqja-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+
+.tag-cloud {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}

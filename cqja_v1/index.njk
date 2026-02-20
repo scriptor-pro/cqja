@@ -1,0 +1,15 @@
+
+---
+layout: layouts/base.njk
+title: Ce Que J’ai Appris
+---
+
+<h1>Ce Que J’ai Appris</h1>
+
+<ul>
+{% for note in collections.cqjaOrdered | reverse %}
+  <li>
+    <a href="{{ note.url }}">{{ note.data.title }}</a>
+  </li>
+{% endfor %}
+</ul>

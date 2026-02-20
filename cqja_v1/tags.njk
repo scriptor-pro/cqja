@@ -1,0 +1,36 @@
+
+---
+layout: layouts/base.njk
+title: Tags
+---
+
+<h2>Nuage de tags</h2>
+
+<label for="tag-filter">Filtrer les tags</label>
+<input type="search" id="tag-filter">
+
+<ul class="tag-cloud" id="tag-cloud">
+{% for item in collections.tagStats %}
+  <li data-tag="{{ item.tag }}">
+    <a href="/tags/{{ item.tag }}/"
+       style="font-size: {{ 0.9 + (item.weight * 1.4) }}rem;
+              font-weight: {{ 400 + (item.weight * 500) | round }};">
+      {{ item.tag }}
+    </a>
+  </li>
+{% endfor %}
+</ul>
+
+<script>
+(function() {
+  const input = document.getElementById('tag-filter');
+  const tags = document.querySelectorAll('#tag-cloud li');
+
+  input.addEventListener('input', function() {
+    const value = this.value.toLowerCase();
+    tags.forEach(li => {
+      li.style.display = li.dataset.tag.includes(value) ? '' : 'none';
+    });
+  });
+})();
+</script>
