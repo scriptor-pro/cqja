@@ -6,6 +6,10 @@ const dateFrFormatter = new Intl.DateTimeFormat("fr-FR", {
   year: "numeric",
   timeZone: "UTC",
 });
+const frCollator = new Intl.Collator("fr", {
+  sensitivity: "base",
+  numeric: true,
+});
 
 function plainTextFromHtml(value) {
   const html = String(value || "");
@@ -83,6 +87,20 @@ module.exports = function (eleventyConfig) {
     return `${text.slice(0, Math.max(1, maxLength - 1)).trimEnd()}…`;
   });
 
+  eleventyConfig.addFilter("absoluteUrl", function (value, baseUrl) {
+    if (!value) {
+      return baseUrl || "";
+    }
+    if (/^https?:\/\//.test(value)) {
+      return value;
+    }
+    try {
+      return new URL(value, baseUrl).toString();
+    } catch {
+      return value;
+    }
+  });
+
   eleventyConfig.addCollection("cqjaOrdered", function (collectionApi) {
     return collectionApi
       .getFilteredByTag("note")
@@ -151,7 +169,12 @@ module.exports = function (eleventyConfig) {
         const weight = (count - min) / (max - min || 1);
         return { tag, count, weight };
       })
-      .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
+      .sort((a, b) => {
+        if (b.count !== a.count) {
+          return b.count - a.count;
+        }
+        return frCollator.compare(a.tag, b.tag);
+      });
   });
 
   eleventyConfig.addTransform("externalLinks", function (content) {

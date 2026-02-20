@@ -1,9 +1,31 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  {% if title %}
+    {% set metaTitle = title ~ " | " ~ site.name %}
+  {% else %}
+    {% set metaTitle = site.name %}
+  {% endif %}
+  {% set metaDescription = description or (content | excerptPlain(160)) or site.description %}
+  {% set canonicalUrl = page.url | absoluteUrl(site.url) %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ title }}</title>
+  <title>{{ metaTitle }}</title>
+  <meta name="description" content="{{ metaDescription | escape }}">
+  <meta name="robots" content="{{ metaRobots or 'index,follow' }}">
+  <link rel="canonical" href="{{ canonicalUrl }}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="{{ site.locale }}">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{{ metaTitle | escape }}">
+  <meta property="og:description" content="{{ metaDescription | escape }}">
+  <meta property="og:url" content="{{ canonicalUrl }}">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ metaTitle | escape }}">
+  <meta name="twitter:description" content="{{ metaDescription | escape }}">
+
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.bunny.net">
   <link href="https://fonts.bunny.net/css?family=source-serif-4:400,600,700|source-sans-3:400,500,600,700" rel="stylesheet" />
@@ -17,6 +39,9 @@
       <a href="/tags/">Tags</a>
       <a href="/a-propos/">À Propos</a>
     </nav>
+    <figure class="site-illustration">
+      <img src="/assets/cqja.webp" alt="Illustration CQJA: carnet, notes et interface numerique">
+    </figure>
   </header>
 
   <main>
