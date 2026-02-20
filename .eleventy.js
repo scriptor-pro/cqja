@@ -1,10 +1,45 @@
 const { JSDOM } = require("jsdom");
+const fs = require("fs");
 const dateFrFormatter = new Intl.DateTimeFormat("fr-FR", {
   day: "numeric",
   month: "long",
   year: "numeric",
   timeZone: "UTC",
 });
+
+function plainTextFromHtml(value) {
+  const html = String(value || "");
+  const dom = new JSDOM(`<body>${html}</body>`);
+  return (dom.window.document.body.textContent || "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function countWords(value) {
+  if (!value) {
+    return 0;
+  }
+  return value.split(/\s+/).filter(Boolean).length;
+}
+
+function noteWordCountFromFile(inputPath) {
+  try {
+    const raw = fs.readFileSync(inputPath, "utf8");
+    const withoutFrontmatter = raw.replace(/^---[\s\S]*?---\s*/, "");
+    const withoutLinks = withoutFrontmatter.replace(
+      /\[([^\]]+)\]\([^\)]+\)/g,
+      "$1",
+    );
+    const withoutMarkup = withoutLinks
+      .replace(/<[^>]+>/g, " ")
+      .replace(/[`*_>#\-\[\]]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    return countWords(withoutMarkup);
+  } catch {
+    return 0;
+  }
+}
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("assets");
@@ -39,11 +74,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("excerptPlain", function (value, maxLength = 180) {
-    const html = String(value || "");
-    const dom = new JSDOM(`<body>${html}</body>`);
-    const text = (dom.window.document.body.textContent || "")
-      .replace(/\s+/g, " ")
-      .trim();
+    const text = plainTextFromHtml(value);
 
     if (text.length <= maxLength) {
       return text;
@@ -56,6 +87,49 @@ module.exports = function (eleventyConfig) {
     return collectionApi
       .getFilteredByTag("note")
       .sort((a, b) => a.date - b.date);
+  });
+
+  eleventyConfig.addCollection("homePages", function (collectionApi) {
+    const maxWordsPerPage = 2000;
+    const notes = collectionApi
+      .getFilteredByTag("note")
+      .sort((a, b) => b.date - a.date);
+
+    const pages = [];
+    let currentPage = {
+      notes: [],
+      totalWords: 0,
+    };
+
+    for (const note of notes) {
+      const noteWords = noteWordCountFromFile(
+        note.inputPath || note.page?.inputPath,
+      );
+
+      if (
+        currentPage.notes.length > 0 &&
+        currentPage.totalWords + noteWords > maxWordsPerPage
+      ) {
+        pages.push(currentPage);
+        currentPage = {
+          notes: [],
+          totalWords: 0,
+        };
+      }
+
+      currentPage.notes.push(note);
+      currentPage.totalWords += noteWords;
+    }
+
+    if (currentPage.notes.length > 0) {
+      pages.push(currentPage);
+    }
+
+    return pages.map((page, index) => ({
+      ...page,
+      pageNumber: index + 1,
+      totalPages: pages.length,
+    }));
   });
 
   eleventyConfig.addCollection("tagStats", function (collectionApi) {

@@ -294,6 +294,23 @@ pre {
   font-family: var(--font-serif);
 }
 
+.home-pagination {
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 2px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+  align-items: center;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  font-size: 0.82rem;
+}
+
+.home-pagination-current {
+  color: var(--muted);
+}
+
 @media (min-width: 860px) {
   .home-grid {
     grid-template-columns: 2fr 1fr;
