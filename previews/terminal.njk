@@ -1,0 +1,213 @@
+---
+layout: layouts/base.njk
+title: Apercu theme terminal
+permalink: /previews/terminal/index.html
+---
+
+<style>
+  .theme-terminal {
+    --bg: #f6f7f9;
+    --panel: #ffffff;
+    --ink: #191c22;
+    --muted: #5a6575;
+    --accent: #0f3f7a;
+    --line: #d6dbe4;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+    margin-top: 0.5rem;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--panel);
+    box-shadow: 0 12px 28px rgba(15, 63, 122, 0.1);
+  }
+
+  .theme-terminal .bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.52rem 0.8rem;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  .theme-terminal .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #9aa6b8;
+  }
+
+  .theme-terminal .shell {
+    padding: 1rem;
+  }
+
+  .theme-terminal h1,
+  .theme-terminal h2,
+  .theme-terminal h3,
+  .theme-terminal p,
+  .theme-terminal li {
+    color: var(--ink);
+  }
+
+  .theme-terminal h1,
+  .theme-terminal h2 {
+    font-family: var(--mono);
+    letter-spacing: 0.02em;
+    color: var(--accent);
+  }
+
+  .theme-terminal .lede,
+  .theme-terminal .content,
+  .theme-terminal .content li {
+    font-family: var(--serif);
+    line-height: 1.68;
+  }
+
+  .theme-terminal .lede {
+    margin-top: 0.2rem;
+    color: var(--muted);
+    max-width: 68ch;
+  }
+
+  .theme-terminal .grid {
+    display: grid;
+    gap: 0.95rem;
+  }
+
+  @media (min-width: 900px) {
+    .theme-terminal .grid {
+      grid-template-columns: 2fr 1fr;
+      align-items: start;
+    }
+  }
+
+  .theme-terminal .panel {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #fff;
+    padding: 0.9rem;
+  }
+
+  .theme-terminal .label {
+    margin: 0 0 0.45rem;
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .theme-terminal .notes,
+  .theme-terminal .tags,
+  .theme-terminal .mini-tags {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .theme-terminal .notes li {
+    padding: 0.72rem 0;
+    border-bottom: 1px dashed var(--line);
+  }
+
+  .theme-terminal .notes li:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .theme-terminal .title {
+    font-family: var(--mono);
+    text-decoration: none;
+    color: var(--accent);
+  }
+
+  .theme-terminal .title:hover {
+    text-decoration: underline;
+  }
+
+  .theme-terminal .content {
+    margin: 0.34rem 0;
+    color: #2c3543;
+  }
+
+  .theme-terminal .meta {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .theme-terminal .mini-tags,
+  .theme-terminal .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.36rem;
+  }
+
+  .theme-terminal .mini-tags a,
+  .theme-terminal .tags a {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.12rem 0.35rem;
+    text-decoration: none;
+    color: #173a74;
+    background: #f8fafd;
+  }
+</style>
+
+<section class="theme-terminal">
+  <div class="bar">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span>theme 2 / carnet terminal</span>
+  </div>
+
+  <div class="shell">
+    <h1>Ce Que J'ai Appris</h1>
+    <p class="lede">Un accueil qui montre un cadre methodique (mono) et un corps de pensee (serif): l'outil d'un cote, la reflexion de l'autre.</p>
+
+    <div class="grid">
+      <section class="panel">
+        <p class="label">journal</p>
+        <ul class="notes">
+        {% for note in (collections.cqjaOrdered | reverse) %}
+          {% if loop.index <= 8 %}
+          <li>
+            <a class="title" href="{{ note.url }}">{{ note.data.title }}</a>
+            <p class="content">{{ note.templateContent | excerptPlain(170) }}</p>
+            <p class="meta">{{ note.date | dateFr }}</p>
+            {% if note.data.tags and note.data.tags.length > 0 %}
+            <ul class="mini-tags" aria-label="Tags de la note">
+              {% for tag in note.data.tags %}
+                {% if tag != "note" %}
+                <li><a href="/tags/{{ tag | tagSlug }}/">#{{ tag }}</a></li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+      </section>
+
+      <aside class="panel">
+        <p class="label">index des themes</p>
+        <ul class="tags">
+        {% for item in collections.tagStats %}
+          {% if loop.index <= 12 %}
+          <li><a href="/tags/{{ item.tag | tagSlug }}/">{{ item.tag }} ({{ item.count }})</a></li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>

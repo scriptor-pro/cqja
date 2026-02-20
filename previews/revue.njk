@@ -1,0 +1,186 @@
+---
+layout: layouts/base.njk
+title: Apercu theme revue
+permalink: /previews/revue/index.html
+---
+
+<style>
+  .theme-revue {
+    --bg: #f5f1e7;
+    --paper: #fffdf8;
+    --ink: #1f2226;
+    --muted: #5a6270;
+    --accent: #173a84;
+    --line: #d9d3c3;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    --ui: "Inter", "IBM Plex Sans", "Segoe UI", sans-serif;
+    margin-top: 0.5rem;
+    padding: 1.1rem;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: linear-gradient(180deg, var(--paper), #fefbf4);
+    color: var(--ink);
+    box-shadow: 0 10px 30px rgba(23, 58, 132, 0.08);
+  }
+
+  .theme-revue h1,
+  .theme-revue h2,
+  .theme-revue h3,
+  .theme-revue p,
+  .theme-revue li {
+    font-family: var(--serif);
+  }
+
+  .theme-revue h1 {
+    margin: 0;
+    font-size: clamp(1.8rem, 1.4rem + 1.1vw, 2.35rem);
+    color: var(--accent);
+  }
+
+  .theme-revue .lede {
+    margin: 0.45rem 0 1.25rem;
+    max-width: 68ch;
+    color: var(--muted);
+    font-size: 1.06rem;
+  }
+
+  .theme-revue .topline {
+    font-family: var(--ui);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .theme-revue .grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 900px) {
+    .theme-revue .grid {
+      grid-template-columns: 1.9fr 1fr;
+      align-items: start;
+    }
+  }
+
+  .theme-revue .panel {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    padding: 0.95rem;
+  }
+
+  .theme-revue .note-list,
+  .theme-revue .tag-list,
+  .theme-revue .mini-tags {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .theme-revue .note-item {
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px dotted var(--line);
+  }
+
+  .theme-revue .note-item:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .theme-revue .note-item a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 1.08rem;
+  }
+
+  .theme-revue .note-item a:hover {
+    text-decoration: underline;
+  }
+
+  .theme-revue .excerpt {
+    margin: 0.32rem 0;
+    color: var(--muted);
+    max-width: 66ch;
+  }
+
+  .theme-revue .meta,
+  .theme-revue .mini-tags a,
+  .theme-revue .tag-list a {
+    font-family: var(--ui);
+    font-size: 0.83rem;
+  }
+
+  .theme-revue .meta {
+    color: var(--muted);
+  }
+
+  .theme-revue .mini-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.4rem;
+  }
+
+  .theme-revue .mini-tags a,
+  .theme-revue .tag-list a {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.13rem 0.45rem;
+    text-decoration: none;
+    background: #fff;
+    color: #223a63;
+  }
+
+  .theme-revue .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+</style>
+
+<section class="theme-revue">
+  <p class="topline">Theme 1 - Revue intellectuelle</p>
+  <h1>Ce Que J'ai Appris</h1>
+  <p class="lede">Une page d'accueil qui donne d'abord l'impression d'un carnet de lecture: calme, lisible, structure par la typographie.</p>
+
+  <div class="grid">
+    <section class="panel">
+      <h2>Dernieres notes</h2>
+      <ul class="note-list">
+      {% for note in (collections.cqjaOrdered | reverse) %}
+        {% if loop.index <= 8 %}
+        <li class="note-item">
+          <a href="{{ note.url }}">{{ note.data.title }}</a>
+          <p class="excerpt">{{ note.templateContent | excerptPlain(180) }}</p>
+          <p class="meta">{{ note.date | dateFr }}</p>
+          {% if note.data.tags and note.data.tags.length > 0 %}
+          <ul class="mini-tags" aria-label="Tags de la note">
+            {% for tag in note.data.tags %}
+              {% if tag != "note" %}
+              <li><a href="/tags/{{ tag | tagSlug }}/">#{{ tag }}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </li>
+        {% endif %}
+      {% endfor %}
+      </ul>
+    </section>
+
+    <aside class="panel">
+      <h2>Themes forts</h2>
+      <ul class="tag-list">
+      {% for item in collections.tagStats %}
+        {% if loop.index <= 12 %}
+        <li><a href="/tags/{{ item.tag | tagSlug }}/">{{ item.tag }} ({{ item.count }})</a></li>
+        {% endif %}
+      {% endfor %}
+      </ul>
+    </aside>
+  </div>
+</section>

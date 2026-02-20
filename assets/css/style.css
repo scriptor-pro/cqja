@@ -8,9 +8,8 @@
   --line: #d8dde8;
   --shadow: 0 8px 24px rgba(22, 66, 157, 0.08);
   --radius: 14px;
-  --font-serif:
-    "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino,
-    "URW Palladio L", serif;
+  --font-serif: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", serif;
+  --font-sans: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --font-mono:
     "IBM Plex Mono", "SFMono-Regular", Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
@@ -89,6 +88,7 @@ input:focus-visible {
 }
 
 nav {
+  font-family: var(--font-sans);
   display: inline-flex;
   gap: 0.45rem;
   padding: 0.4rem;
@@ -126,6 +126,16 @@ nav a:focus-visible {
   margin: 0 0 1.1rem;
   color: var(--muted);
   font-size: 1.03em;
+}
+
+.topline,
+.meta,
+.cqja-number,
+label,
+input,
+.note-tags a,
+.tag-cloud a {
+  font-family: var(--font-sans);
 }
 
 p,

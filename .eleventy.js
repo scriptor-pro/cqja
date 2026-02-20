@@ -38,6 +38,20 @@ module.exports = function (eleventyConfig) {
     return dateFrFormatter.format(date);
   });
 
+  eleventyConfig.addFilter("excerptPlain", function (value, maxLength = 180) {
+    const html = String(value || "");
+    const dom = new JSDOM(`<body>${html}</body>`);
+    const text = (dom.window.document.body.textContent || "")
+      .replace(/\s+/g, " ")
+      .trim();
+
+    if (text.length <= maxLength) {
+      return text;
+    }
+
+    return `${text.slice(0, Math.max(1, maxLength - 1)).trimEnd()}…`;
+  });
+
   eleventyConfig.addCollection("cqjaOrdered", function (collectionApi) {
     return collectionApi
       .getFilteredByTag("note")
