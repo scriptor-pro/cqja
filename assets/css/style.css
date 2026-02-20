@@ -68,8 +68,8 @@ h3 {
   font-family: var(--font-sans);
   color: var(--accent);
   line-height: 1.2;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 h1 {
@@ -287,8 +287,8 @@ pre {
   text-decoration: none;
   color: var(--accent);
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 .terminal-title:hover {
