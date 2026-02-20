@@ -1,13 +1,16 @@
 :root {
-  --bg: #f8f6ef;
+  --bg: #f4f0e6;
   --paper: #fffdf8;
-  --ink: #1f2226;
-  --muted: #626b75;
-  --accent: #16429d;
-  --accent-soft: #e7eefc;
-  --line: #d8dde8;
-  --shadow: 0 8px 24px rgba(22, 66, 157, 0.08);
-  --radius: 14px;
+  --ink: #111111;
+  --muted: #49505b;
+  --accent: #0d47a1;
+  --accent-soft: #e9eef8;
+  --line: #181818;
+  --bauhaus-red: #c62b25;
+  --bauhaus-yellow: #f3c316;
+  --bauhaus-blue: #0d47a1;
+  --shadow: 0 10px 0 rgba(0, 0, 0, 0.06);
+  --radius: 8px;
   --font-serif: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", serif;
   --font-sans: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --font-mono:
@@ -22,7 +25,18 @@
 body {
   margin: 0;
   color: var(--ink);
-  background: radial-gradient(circle at 20% -10%, #ffffff, var(--bg) 60%);
+  background:
+    radial-gradient(
+      circle at 8% 10%,
+      rgba(243, 195, 22, 0.18),
+      transparent 20%
+    ),
+    radial-gradient(
+      circle at 90% 12%,
+      rgba(13, 71, 161, 0.14),
+      transparent 18%
+    ),
+    linear-gradient(180deg, #faf7ef, var(--bg));
   font-family: var(--font-serif);
   font-size: clamp(1.03rem, 0.98rem + 0.25vw, 1.13rem);
   line-height: 1.72;
@@ -49,9 +63,11 @@ main {
 h1,
 h2,
 h3 {
+  font-family: var(--font-sans);
   color: var(--accent);
   line-height: 1.2;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 h1 {
@@ -92,21 +108,24 @@ nav {
   display: inline-flex;
   gap: 0.45rem;
   padding: 0.4rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: #ffffffd9;
-  backdrop-filter: blur(3px);
+  border: 2px solid var(--line);
+  border-radius: 0;
+  background: #fff;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
 }
 
 nav a {
   text-decoration: none;
   padding: 0.35rem 0.72rem;
-  border-radius: 999px;
+  border-radius: 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
 }
 
 nav a:hover,
 nav a:focus-visible {
-  background: var(--accent-soft);
+  background: var(--bauhaus-yellow);
 }
 
 .skip-link {
@@ -193,7 +212,7 @@ pre {
 
 .panel {
   background: var(--paper);
-  border: 1px solid var(--line);
+  border: 2px solid var(--line);
   border-radius: var(--radius);
   padding: 1rem 1rem 0.9rem;
   box-shadow: var(--shadow);
@@ -206,11 +225,11 @@ pre {
 
 .theme-terminal-home {
   margin-top: 0.35rem;
-  border: 1px solid var(--line);
-  border-radius: 16px;
+  border: 2px solid var(--line);
+  border-radius: 10px;
   overflow: hidden;
   background: #fff;
-  box-shadow: 0 12px 28px rgba(15, 63, 122, 0.1);
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.1);
 }
 
 .terminal-bar {
@@ -218,7 +237,7 @@ pre {
   align-items: center;
   gap: 0.5rem;
   padding: 0.52rem 0.8rem;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 2px solid var(--line);
   background: #f6f7f9;
   font-family: var(--font-sans);
   font-size: 0.82rem;
@@ -228,8 +247,20 @@ pre {
 .terminal-bar .dot {
   width: 9px;
   height: 9px;
-  border-radius: 50%;
+  border-radius: 0;
   background: #9aa6b8;
+}
+
+.terminal-bar .dot:nth-child(1) {
+  background: var(--bauhaus-red);
+}
+
+.terminal-bar .dot:nth-child(2) {
+  background: var(--bauhaus-yellow);
+}
+
+.terminal-bar .dot:nth-child(3) {
+  background: var(--bauhaus-blue);
 }
 
 .terminal-shell {
@@ -254,6 +285,8 @@ pre {
   text-decoration: none;
   color: var(--accent);
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 
 .terminal-title:hover {
@@ -338,7 +371,7 @@ pre {
 .tag-cloud a {
   display: inline-block;
   padding: 0.15rem 0.5rem;
-  border-radius: 999px;
+  border-radius: 0;
   border: 1px solid var(--line);
   background: #fff;
   text-decoration: none;
@@ -346,7 +379,7 @@ pre {
 
 .note-tags a:hover,
 .tag-cloud a:hover {
-  background: var(--accent-soft);
+  background: var(--bauhaus-yellow);
 }
 
 .tag-cloud {
@@ -364,8 +397,8 @@ input[type="search"] {
   margin: 0.4rem 0 1.1rem;
   padding: 0.58rem 0.65rem;
   width: min(100%, 27rem);
-  border: 1px solid var(--line);
-  border-radius: 8px;
+  border: 2px solid var(--line);
+  border-radius: 0;
   background: #fff;
   color: var(--ink);
 }
