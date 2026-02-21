@@ -1,0 +1,67 @@
+---
+layout: layouts/base.njk
+title: Comparatif serifs
+description: Comparatif rapide de polices serif via Bunny Fonts.
+permalink: /test/serifs/index.html
+metaRobots: noindex,nofollow
+sitemap: false
+---
+
+<style>
+  @import url("https://fonts.bunny.net/css?family=cormorant-garamond:400,600,700|eb-garamond:400,500,600,700|lora:400,500,600,700");
+
+  .font-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .font-card {
+    border: 2px solid var(--line);
+    padding: 1rem;
+    background: #fff;
+  }
+
+  .font-card h2 {
+    margin: 0 0 0.8rem;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-family: var(--font-sans);
+  }
+
+  .sample {
+    font-size: 1.4rem;
+    line-height: 1.4;
+  }
+
+  .sample-cormorant {
+    font-family: "Cormorant Garamond", serif;
+  }
+
+  .sample-eb {
+    font-family: "EB Garamond", serif;
+  }
+
+  .sample-lora {
+    font-family: "Lora", serif;
+  }
+</style>
+
+<h1>Comparatif de polices serif</h1>
+<p><a href="/test/">&larr; Retour aux pages de test</a></p>
+
+<section class="font-grid" aria-label="Comparatif serif">
+  <article class="font-card">
+    <h2>Cormorant Garamond</h2>
+    <p class="sample sample-cormorant">Les carnets bien tenus fabriquent la memoire.</p>
+  </article>
+  <article class="font-card">
+    <h2>EB Garamond</h2>
+    <p class="sample sample-eb">Les carnets bien tenus fabriquent la memoire.</p>
+  </article>
+  <article class="font-card">
+    <h2>Lora</h2>
+    <p class="sample sample-lora">Les carnets bien tenus fabriquent la memoire.</p>
+  </article>
+</section>
