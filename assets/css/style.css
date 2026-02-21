@@ -1,3 +1,83 @@
+@font-face {
+  font-family: "Literata";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("/assets/fonts/literata/literata-latin-400-normal.woff2") format("woff2"),
+    url("/assets/fonts/literata/literata-latin-400-normal.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Literata";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    url("/assets/fonts/literata/literata-latin-500-normal.woff2") format("woff2"),
+    url("/assets/fonts/literata/literata-latin-500-normal.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Literata";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    url("/assets/fonts/literata/literata-latin-600-normal.woff2") format("woff2"),
+    url("/assets/fonts/literata/literata-latin-600-normal.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Literata";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url("/assets/fonts/literata/literata-latin-700-normal.woff2") format("woff2"),
+    url("/assets/fonts/literata/literata-latin-700-normal.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Inter UI";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("/assets/fonts/inter/inter-latin-400-normal.woff2") format("woff2"),
+    url("/assets/fonts/inter/inter-latin-400-normal.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Inter UI";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    url("/assets/fonts/inter/inter-latin-500-normal.woff2") format("woff2"),
+    url("/assets/fonts/inter/inter-latin-500-normal.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Inter UI";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    url("/assets/fonts/inter/inter-latin-600-normal.woff2") format("woff2"),
+    url("/assets/fonts/inter/inter-latin-600-normal.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Inter UI";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url("/assets/fonts/inter/inter-latin-700-normal.woff2") format("woff2"),
+    url("/assets/fonts/inter/inter-latin-700-normal.woff") format("woff");
+}
+
 :root {
   --bg: #f7f4ed;
   --paper: #fffdf8;
@@ -11,8 +91,8 @@
   --bauhaus-blue: #0d47a1;
   --shadow: 0 10px 0 rgba(0, 0, 0, 0.06);
   --radius: 8px;
-  --font-serif: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", serif;
-  --font-sans: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Literata", "Iowan Old Style", "Palatino Linotype", serif;
+  --font-sans: "Inter UI", "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --font-mono:
     "IBM Plex Mono", "SFMono-Regular", Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
