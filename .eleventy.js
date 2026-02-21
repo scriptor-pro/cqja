@@ -109,6 +109,15 @@ module.exports = function (eleventyConfig) {
     }
   });
 
+  eleventyConfig.addFilter("shuffle", function (items) {
+    const list = Array.isArray(items) ? [...items] : [];
+    for (let i = list.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [list[i], list[j]] = [list[j], list[i]];
+    }
+    return list;
+  });
+
   eleventyConfig.addCollection("cqjaOrdered", function (collectionApi) {
     return collectionApi
       .getFilteredByTag("note")

@@ -22,7 +22,7 @@ permalink: "{% if pagination.pageNumber == 0 %}/{% else %}/page/{{ pagination.pa
   <div class="terminal-shell">
     <div class="home-grid terminal-grid">
       <section class="panel terminal-panel">
-        <p class="terminal-label">journal / page {{ homePage.pageNumber }} sur {{ homePage.totalPages }}</p>
+        <p class="terminal-label">bloc-notes / page {{ homePage.pageNumber }} sur {{ homePage.totalPages }}</p>
         <ul class="home-notes terminal-notes">
         {% for note in homePage.notes %}
           <li class="note-item terminal-note-item">
@@ -64,9 +64,10 @@ permalink: "{% if pagination.pageNumber == 0 %}/{% else %}/page/{{ pagination.pa
       </section>
 
       <aside class="home-tags panel terminal-panel">
-        <p class="terminal-label">index des thèmes</p>
+        <p class="terminal-label terminal-label-normal">Ça parle <em>notamment</em> de :</p>
+        {% set randomTagStats = collections.tagStats | shuffle %}
         <ul class="tag-cloud">
-        {% for item in collections.tagStats %}
+        {% for item in randomTagStats %}
           {% if loop.index <= 12 %}
           <li>
             <a href="/tags/{{ item.tag | tagSlug }}/">{{ item.tag }} ({{ item.count }})</a>

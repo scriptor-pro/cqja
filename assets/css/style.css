@@ -374,6 +374,10 @@ pre {
   color: var(--muted);
 }
 
+.terminal-label-normal {
+  text-transform: none;
+}
+
 .terminal-title {
   font-family: var(--font-sans);
   text-decoration: none;
