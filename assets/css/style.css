@@ -378,6 +378,10 @@ pre {
   text-transform: none;
 }
 
+.terminal-label-emphasis {
+  font-weight: 500;
+}
+
 .terminal-title {
   font-family: var(--font-sans);
   text-decoration: none;
