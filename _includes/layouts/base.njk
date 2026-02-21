@@ -6,10 +6,29 @@
   {% else %}
     {% set metaTitle = site.name %}
   {% endif %}
-  {% set metaDescription = description or (content | excerptPlain(160)) or site.description %}
+  {% set baseMetaDescription = description or (content | excerptPlain(140)) or site.description %}
+  {% set isNotePage = tags and ("note" in tags) %}
+  {% set noteTagList = "" %}
+  {% if isNotePage %}
+    {% for tag in tags %}
+      {% if tag != "note" %}
+        {% if noteTagList %}
+          {% set noteTagList = noteTagList ~ ", " ~ tag %}
+        {% else %}
+          {% set noteTagList = tag %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  {% if isNotePage and noteTagList %}
+    {% set metaDescription = baseMetaDescription ~ " Tags: " ~ noteTagList ~ "." %}
+  {% else %}
+    {% set metaDescription = baseMetaDescription %}
+  {% endif %}
   {% set canonicalUrl = page.url | absoluteUrl(site.url) %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="{{ eleventy.generator }}">
   <title>{{ metaTitle }}</title>
   <meta name="description" content="{{ metaDescription | escape }}">
   <meta name="robots" content="{{ metaRobots or 'index,follow' }}">
@@ -47,7 +66,17 @@
       </a>
     </nav>
     <figure class="site-illustration">
-      <img src="/assets/cqja.webp" alt="Illustration CQJA: carnet, notes et interface numerique">
+      <img
+        src="/assets/cqja-861.webp"
+        srcset="/assets/cqja-861.webp 861w, /assets/cqja.webp 1024w"
+        sizes="(max-width: 920px) calc(100vw - 2.2rem), 861px"
+        width="861"
+        height="484"
+        fetchpriority="high"
+        loading="eager"
+        decoding="async"
+        alt="Illustration CQJA: carnet, notes et interface numerique"
+      >
     </figure>
   </header>
 

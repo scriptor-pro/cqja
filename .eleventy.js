@@ -116,7 +116,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addCollection("homePages", function (collectionApi) {
-    const maxWordsPerPage = 2000;
+    const maxWordsPerPage = 500;
     const notes = collectionApi
       .getFilteredByTag("note")
       .sort((a, b) => b.date - a.date);
