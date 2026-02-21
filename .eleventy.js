@@ -69,6 +69,14 @@ module.exports = function (eleventyConfig) {
     return date.toISOString().slice(0, 10);
   });
 
+  eleventyConfig.addFilter("dateRfc822", function (value) {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) {
+      return "";
+    }
+    return date.toUTCString();
+  });
+
   eleventyConfig.addFilter("dateFr", function (value) {
     const date = new Date(value);
     if (Number.isNaN(date.getTime())) {
@@ -148,6 +156,12 @@ module.exports = function (eleventyConfig) {
       pageNumber: index + 1,
       totalPages: pages.length,
     }));
+  });
+
+  eleventyConfig.addCollection("notesRecent", function (collectionApi) {
+    return collectionApi
+      .getFilteredByTag("note")
+      .sort((a, b) => b.date - a.date);
   });
 
   eleventyConfig.addCollection("tagStats", function (collectionApi) {

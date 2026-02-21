@@ -1,0 +1,27 @@
+---
+permalink: /rss.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>{{ site.name | escape }}</title>
+    <link>{{ site.url }}</link>
+    <description>{{ site.description | escape }}</description>
+    <language>fr-FR</language>
+    {% if collections.notesRecent and collections.notesRecent.length > 0 %}
+    <lastBuildDate>{{ collections.notesRecent[0].date | dateRfc822 }}</lastBuildDate>
+    {% endif %}
+    {% for note in collections.notesRecent %}
+    {% if loop.index <= 20 %}
+    <item>
+      <title>{{ note.data.title | escape }}</title>
+      <link>{{ note.url | absoluteUrl(site.url) }}</link>
+      <guid isPermaLink="true">{{ note.url | absoluteUrl(site.url) }}</guid>
+      <pubDate>{{ note.date | dateRfc822 }}</pubDate>
+      <description>{{ note.templateContent | excerptPlain(280) | escape }}</description>
+    </item>
+    {% endif %}
+    {% endfor %}
+  </channel>
+</rss>
