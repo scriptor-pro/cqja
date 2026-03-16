@@ -1,0 +1,65 @@
+---
+layout: layouts/base.njk
+title: Test Litterata + Inter UI
+description: Echantillon local combinant Litterata et Inter UI.
+permalink: /test/litterata-inter/index.html
+metaRobots: noindex,nofollow
+sitemap: false
+---
+
+<style>
+  @import url("https://fonts.bunny.net/css?family=inter:400,500,600,700|litterata:400,500,600,700&display=swap");
+
+  .pairing-wrap {
+    display: grid;
+    gap: 1.25rem;
+    max-width: 78ch;
+  }
+
+  .pairing-card {
+    border: 2px solid var(--line);
+    background: #fff;
+    padding: 1rem 1.1rem;
+  }
+
+  .pairing-serif {
+    font-family: "Litterata", serif;
+    font-size: clamp(1.15rem, 1.9vw, 1.45rem);
+    line-height: 1.6;
+  }
+
+  .pairing-ui {
+    font-family: "Inter UI", "Inter", sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .pairing-ui h2 {
+    margin: 0 0 0.55rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .pairing-ui p {
+    margin: 0 0 0.55rem;
+  }
+</style>
+
+<h1>Test Litterata + Inter UI</h1>
+<p><a href="/test/">&larr; Retour aux pages de test</a></p>
+
+<section class="pairing-wrap" aria-label="Association typographique Litterata et Inter UI">
+  <article class="pairing-card pairing-serif">
+    <p>
+      Litterata donne une voix de lecture stable et editoriale, utile pour les notes longues.
+    </p>
+  </article>
+
+  <article class="pairing-card pairing-ui">
+    <h2>Elements d'interface</h2>
+    <p>Inter UI garde une lecture nette pour la navigation, les metadonnees et les petits composants.</p>
+    <p>Poids conseilles: 500 pour les menus, 600 pour les sous-titres, 400 pour les zones utilitaires.</p>
+  </article>
+</section>
